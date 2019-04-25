@@ -1,0 +1,56 @@
+---
+title: "Reproducible research: Facebook Senate Ads"
+output: github_document
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+---
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+library(tidyverse)
+library(magrittr)
+## Global options
+options(max.print = "75")
+# create the data folder
+if (!file.exists("data/")) {
+    dir.create("data/")
+}
+# create the image folder
+if (!file.exists("image/")) {
+    dir.create("image/")
+}
+opts_chunk$set(
+  echo = FALSE,
+  cache = FALSE,
+  prompt = FALSE,
+  tidy = TRUE,
+  comment = NA,
+  message = FALSE,
+  warning = FALSE,
+  size = "small",
+  fig.path = "images/")
+knitr::opts_knit$set(
+    width = 78)
+base::options(tibble.print_max = 25,
+              tibble.width = 78)
+```
+
+# Motivation
+
+This document outlines an attempt to reproduce the summaries and analyses from the article, [“Senator, We Sell Ads”: Analysis of the 2016 Russian Facebook Ads Campaign](https://arxiv.org/abs/1809.10158). 
+
+## The data 
+
+On page 153, under Preliminary Data Analysis, we find a [link to download the data](https://data.world/scottcame/us-house-psci-social-media-ads).
+
+```{r download-data}
+data_url <- "https://query.data.world/s/vnkszflh2x7z5ukwlojoymjkxgaipi"
+# download these into data folder
+download.file(url = data_url, destfile = "data/facebook-2016.csv")
+```
+
+Great! Now that we have this all 
